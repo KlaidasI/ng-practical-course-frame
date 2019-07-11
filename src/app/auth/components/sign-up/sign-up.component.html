@@ -1,3 +1,20 @@
-<p>
-  sign-up works!
-</p>
+<form #signUpForm="ngForm" novalidate>
+  <p>
+    <mat-form-field>
+      <input matInput placeholder="Username" name="username" ngModel required>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input matInput placeholder="Password" name="password" type="password" ngModel required>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input matInput placeholder="Confirm password" name="confirmPassword" type="password" ngModel required>
+    </mat-form-field>
+  </p>
+  <p>
+    <button mat-button type="submit">Sign up</button>
+  </p>
+</form>

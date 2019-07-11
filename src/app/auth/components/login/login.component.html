@@ -1,10 +1,15 @@
-
-<div class="container">
-  <mat-form-field>
-    <input matInput placeholder="Username">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Password">
-  </mat-form-field>
-  <button mat-button>Log in</button>
-</div>
+<form #loginForm="ngForm" novalidate>
+  <p>
+    <mat-form-field>
+      <input matInput placeholder="Username" name="username" ngModel required>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input matInput placeholder="Password" name="password" type="password" ngModel required>
+    </mat-form-field>
+  </p>
+  <p>
+    <button mat-button type="submit" [disabled]="!loginForm.valid">Log in</button>
+  </p>
+</form>

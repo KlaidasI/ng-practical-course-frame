@@ -1,4 +1,5 @@
 <mat-toolbar>
   <h1>{{ title }}</h1>
-  <button mat-button>Logout</button>
+  <span class="span-flex"></span>
+  <button mat-button *ngIf="!isLoggedIn">Logout</button>
 </mat-toolbar>
