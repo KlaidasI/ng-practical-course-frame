@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+
+import { UserCredentials } from '../../models/user.model';
 import { CustomValidators } from './validators';
-import { UserCredentials, User } from '../../models/user.model';
 
 @Component({
   selector: 'app-sign-up',

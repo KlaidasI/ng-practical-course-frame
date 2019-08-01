@@ -1,4 +1,4 @@
-import { FormGroup, ValidatorFn, ValidationErrors, Validators } from '@angular/forms';
+import { FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 export const regExps: { [key: string]: RegExp } = {
     containsNumber: /\d+/

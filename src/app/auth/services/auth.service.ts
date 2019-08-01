@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User, UserCredentials } from '../models/user.model';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { UserValidation } from 'src/app/mock-api/models/api-response.model';
+import { environment } from 'src/environments/environment';
+
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+import { User, UserCredentials } from '../models/user.model';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {

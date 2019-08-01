@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
-import { SignUpComponent } from '../../components/sign-up/sign-up.component';
+import { Component, OnInit } from '@angular/core';
+
 import { UserCredentials } from '../../models/user.model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -9,18 +9,28 @@ import { UserCredentials } from '../../models/user.model';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  @ViewChild(SignUpComponent)
-  private signUpComponent: SignUpComponent;
-
   constructor(private authService: AuthService) { }
+  signupVisible = false;
 
-  ngOnInit() {
-    this.signUpComponent.signupRequested.subscribe((userCredentials: UserCredentials) => {
-      this.signup(userCredentials);
-    });
+  ngOnInit() { }
+
+  toggle() {
+    this.signupVisible = !this.signupVisible;
   }
 
-  private signup(userCredentials: UserCredentials) {
+  login(userCredentials: UserCredentials) {
+    this.authService.login(userCredentials).subscribe(user => {
+      if (user == null) {
+        console.log('Failed to login.');
+      } else {
+        this.authService.user$.next(user);
+        console.log(`User ${user.username} logged in.`);
+      }
+    },
+    error => console.log(error));
+  }
+
+  signup(userCredentials: UserCredentials) {
     this.authService.validateUsername({ username: userCredentials.username }).subscribe(userValidation => {
       if (!userValidation.exists) {
         this.authService.signup(userCredentials).subscribe(user => {
@@ -29,6 +39,7 @@ export class AuthComponent implements OnInit {
       } else {
         console.log('User already exists.');
       }
-    });
+    },
+    error => console.log(error));
   }
 }

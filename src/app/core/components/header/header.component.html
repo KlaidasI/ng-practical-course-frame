@@ -1,5 +1,7 @@
-<mat-toolbar>
-  <h1>{{ title }}</h1>
-  <span class="span-flex"></span>
-  <button mat-button *ngIf="!isLoggedIn">Logout</button>
-</mat-toolbar>
+<form (ngSubmit)="logout()">
+  <mat-toolbar>
+    <h1>{{ title }}</h1>
+    <span class="span-flex"></span>
+    <button mat-button *ngIf="isLoggedIn" type="submit">Logout</button>
+  </mat-toolbar>
+</form>

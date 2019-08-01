@@ -1,5 +1,10 @@
 <div class="mat-form">
-    <app-login></app-login>
-    <button mat-button type="submit">or Sign up</button>
-    <app-sign-up></app-sign-up>
+    <div *ngIf='!signupVisible'>
+        <app-login (loginRequested)='login($event)'></app-login>
+        <button mat-button type="submit" (click)="toggle()">or Sign up</button>
+    </div>
+    <div *ngIf='signupVisible'>
+        <app-sign-up (signupRequested)='signup($event)'></app-sign-up>
+        <button mat-button type="submit" (click)="toggle()">Cancel</button>
+    </div>
 </div>
