@@ -41,8 +41,8 @@ export class TodoApiInterceptor implements HttpInterceptor {
     return this.constructResponse({username});
   }
 
-  handleUsernameValidation({username}): ApiResponse<UserValidation> {
-    const exists: UserValidation = {exists: !!this.getUser(username).username};
+  handleUsernameValidation({username}: User): ApiResponse<UserValidation> {
+    const exists: UserValidation = {exists: !!this.getUser(username)};
     return this.constructResponse<UserValidation>(exists);
   }
 

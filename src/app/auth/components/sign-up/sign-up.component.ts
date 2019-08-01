@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { CustomValidators, errorMessages } from './validators';
+import { CustomValidators } from './validators';
+import { UserCredentials, User } from '../../models/user.model';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,8 +9,6 @@ import { CustomValidators, errorMessages } from './validators';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
-  errors = errorMessages;
-
   signUpForm = this.builder.group({
     username: ['', CustomValidators.usernameValidator],
     passwordGroup: this.builder.group({
@@ -19,7 +18,7 @@ export class SignUpComponent implements OnInit {
   });
 
   @Output()
-  signupRequested = new EventEmitter<boolean>();
+  signupRequested = new EventEmitter<UserCredentials>();
 
   constructor(private builder: FormBuilder) { }
 
@@ -29,7 +28,9 @@ export class SignUpComponent implements OnInit {
   get confirmPassword() { return this.signUpForm.get('passwordGroup.confirmPassword'); }
 
   onSubmit() {
-    this.signupRequested.emit(true);
+    if (this.signUpForm.valid) {
+      this.signupRequested.emit({ username: this.username.value, password: this.password.value });
+    }
   }
 
   ngOnInit() {

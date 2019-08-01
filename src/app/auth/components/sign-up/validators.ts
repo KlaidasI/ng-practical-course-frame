@@ -15,12 +15,3 @@ export class CustomValidators {
         return pass === confirmPassword ? null : { passwordsNotMatch: true };
     }
 }
-
-export const errorMessages: { [key: string]: string } = {
-    usernameRequired: 'Username is required.',
-    usernameMinLength: 'Username must be at least 4 characters long.',
-    passwordRequired: 'Password is required.',
-    passwordMinLength: 'Password must be at least 6 characters long.',
-    passwordContainNumber: 'Password must contain a number.',
-    passwordsMustMatch: 'Passwords must match.',
-};

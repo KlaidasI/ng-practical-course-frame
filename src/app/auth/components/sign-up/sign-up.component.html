@@ -1,12 +1,12 @@
-<form [formGroup]="signUpForm" novalidate>
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" novalidate>
   <p>
     <mat-form-field>
       <input matInput placeholder="Username" formControlName="username" required>
     </mat-form-field>
   </p>
   <div *ngIf="username.invalid && (username.dirty || username.touched)">
-    <mat-error *ngIf="username.errors.required">{{ errors.usernameRequired }}</mat-error>
-    <mat-error *ngIf="username.errors.minlength">{{ errors.usernameMinLength }}</mat-error>
+    <mat-error *ngIf="username.errors.required">Username is required</mat-error>
+    <mat-error *ngIf="username.errors.minlength">Username must be at least 4 characters long</mat-error>
   </div>
   <div formGroupName="passwordGroup">
     <p>
@@ -15,9 +15,9 @@
       </mat-form-field>
     </p>
     <div *ngIf="password.invalid && (password.dirty || password.touched)">
-      <mat-error *ngIf="password.errors.required">{{ errors.passwordRequired }}</mat-error>
-      <mat-error *ngIf="password.errors.minlength">{{ errors.passwordMinLength }}</mat-error>
-      <mat-error *ngIf="password.errors.pattern">{{ errors.passwordContainNumber }}</mat-error>
+      <mat-error *ngIf="password.errors.required">Password is required</mat-error>
+      <mat-error *ngIf="password.errors.minlength">Password must be at least 6 characters long</mat-error>
+      <mat-error *ngIf="password.errors.pattern">Password must contain a number</mat-error>
     </div>
     <p>
       <mat-form-field>
@@ -25,12 +25,12 @@
       </mat-form-field>
     </p>
     <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
-      <mat-error *ngIf="confirmPassword.errors.required">{{ errors.passwordRequired }}</mat-error>
-      <mat-error *ngIf="confirmPassword.errors.minlength">{{ errors.passwordMinLength }}</mat-error>
-      <mat-error *ngIf="confirmPassword.errors.pattern">{{ errors.passwordContainNumber }}</mat-error>
+      <mat-error *ngIf="confirmPassword.errors.required">Password is required</mat-error>
+      <mat-error *ngIf="confirmPassword.errors.minlength">Password must be at least 6 characters long</mat-error>
+      <mat-error *ngIf="confirmPassword.errors.pattern">Password must contain a number</mat-error>
     </div>
     <div *ngIf="confirmPassword.dirty || confirmPassword.touched">
-      <mat-error *ngIf="passwordGroup.errors?.passwordsNotMatch">{{ errors.passwordsMustMatch }}</mat-error>
+      <mat-error *ngIf="passwordGroup.errors?.passwordsNotMatch">Passwords must match</mat-error>
     </div>
   </div>
   <p>
