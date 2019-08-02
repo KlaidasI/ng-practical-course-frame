@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   constructor() { }
-  title = 'Nortal Todo application';
+  title = 'nortal-todo';
 
 }
