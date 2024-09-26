@@ -1,5 +1,6 @@
-import { UserCredentials, User } from '../../auth/models/user.model';
 import { HttpRequest } from '@angular/common/http';
+
+import { User, UserCredentials } from '../../auth/models/user.model';
 
 /**
  * Here we keep a union type of all request bodies that we expect

@@ -1,6 +1,8 @@
-import { User } from '../../auth/models/user.model';
-import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+import { HttpResponse } from '@angular/common/http';
+
+import { User } from '../../auth/models/user.model';
 
 export interface ErrorResponse {
   errorMsg: string;

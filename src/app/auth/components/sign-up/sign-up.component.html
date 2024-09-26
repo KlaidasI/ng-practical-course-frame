@@ -1,3 +1,39 @@
-<p>
-  sign-up works!
-</p>
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" novalidate>
+  <p>
+    <mat-form-field>
+      <input matInput placeholder="Username" formControlName="username" required>
+    </mat-form-field>
+  </p>
+  <div *ngIf="username.invalid && (username.dirty || username.touched)">
+    <mat-error *ngIf="username.errors.required">Username is required</mat-error>
+    <mat-error *ngIf="username.errors.minlength">Username must be at least 4 characters long</mat-error>
+  </div>
+  <div formGroupName="passwordGroup">
+    <p>
+      <mat-form-field>
+        <input matInput placeholder="Password" formControlName="password" type="password" required>
+      </mat-form-field>
+    </p>
+    <div *ngIf="password.invalid && (password.dirty || password.touched)">
+      <mat-error *ngIf="password.errors.required">Password is required</mat-error>
+      <mat-error *ngIf="password.errors.minlength">Password must be at least 6 characters long</mat-error>
+      <mat-error *ngIf="password.errors.pattern">Password must contain a number</mat-error>
+    </div>
+    <p>
+      <mat-form-field>
+        <input matInput placeholder="Confirm password" formControlName="confirmPassword" type="password" required>
+      </mat-form-field>
+    </p>
+    <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
+      <mat-error *ngIf="confirmPassword.errors.required">Password is required</mat-error>
+      <mat-error *ngIf="confirmPassword.errors.minlength">Password must be at least 6 characters long</mat-error>
+      <mat-error *ngIf="confirmPassword.errors.pattern">Password must contain a number</mat-error>
+    </div>
+    <div *ngIf="confirmPassword.dirty || confirmPassword.touched">
+      <mat-error *ngIf="passwordGroup.errors?.passwordsNotMatch">Passwords must match</mat-error>
+    </div>
+  </div>
+  <p>
+    <button mat-button type="submit">Sign up</button>
+  </p>
+</form>

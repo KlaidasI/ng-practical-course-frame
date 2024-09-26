@@ -1,10 +1,14 @@
-import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpHandler, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
+
+import { HttpHandler, HttpInterceptor, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
 import { environment } from '../../../environments/environment';
 import { User, UserCredentials } from '../../auth/models/user.model';
 import { ApiRequest } from '../models/api-request.model';
-import { UserValidation, ApiResponse, ApiResponseBody, ErrorResponse } from '../models/api-response.model';
+import {
+    ApiResponse, ApiResponseBody, ErrorResponse, UserValidation
+} from '../models/api-response.model';
 
 /**
  * We essentially mock a server here. Every outgoing request is
@@ -41,8 +45,8 @@ export class TodoApiInterceptor implements HttpInterceptor {
     return this.constructResponse({username});
   }
 
-  handleUsernameValidation({username}): ApiResponse<UserValidation> {
-    const exists: UserValidation = {exists: !!this.getUser(username).username};
+  handleUsernameValidation({username}: User): ApiResponse<UserValidation> {
+    const exists: UserValidation = {exists: !!this.getUser(username)};
     return this.constructResponse<UserValidation>(exists);
   }
 
